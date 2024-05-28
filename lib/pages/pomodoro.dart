@@ -11,14 +11,8 @@ class PomodoroPage extends StatefulWidget {
 class _PomodoroPageState extends State<PomodoroPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(248, 13, 14, 17),
-        foregroundColor: Colors.white,
-        centerTitle: true,
-        title: const Text("Welcome to Pomodoro"),
-      ),
-      body: const Chronometer(),
+    return const Scaffold(
+      body: Chronometer(),
     );
   }
 }

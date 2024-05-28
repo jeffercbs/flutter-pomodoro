@@ -128,7 +128,6 @@ class _ChronometerState extends State<Chronometer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(248, 13, 14, 17),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -137,9 +136,7 @@ class _ChronometerState extends State<Chronometer> {
                 padding: const EdgeInsets.only(bottom: 30),
                 child: Text(title,
                     style: const TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold))),
+                        fontSize: 30, fontWeight: FontWeight.bold))),
             TweenAnimationBuilder(
                 tween: Tween<double>(begin: 0, end: _start / _maxTime),
                 duration: const Duration(milliseconds: 500),
@@ -163,40 +160,49 @@ class _ChronometerState extends State<Chronometer> {
                       Text(
                         formattingSec(_start),
                         style: const TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   );
                 }),
-            const SizedBox(height: 50),
+            const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 15,
-                      ),
+                      shape: const CircleBorder(),
+                      padding: const EdgeInsets.all(15),
                       backgroundColor: _isRunning ? Colors.red : Colors.green,
                       foregroundColor: Colors.white),
                   onPressed: startTimer,
-                  child: Text(_isRunning ? 'Stop' : 'Start'),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      _isRunning
+                          ? const Icon(Icons.stop)
+                          : const Icon(Icons.play_arrow),
+                    ],
+                  ),
                 ),
                 const SizedBox(width: 10),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 40,
-                      vertical: 15,
-                    ),
-                    backgroundColor: Colors.white,
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.all(15),
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
                     disabledBackgroundColor: Colors.grey.shade400,
                   ),
                   onPressed: _isRunning ? resetTimer : null,
-                  child: const Text('Reset'),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.refresh),
+                    ],
+                  ),
                 )
               ],
             ),
